@@ -1,0 +1,41 @@
+version: '2'
+services:
+  db:
+    image: postgres:9.4
+    ports:
+      - 5434:5432
+    environment:
+      - POSTGRES_DB=shipup_test
+      - POSTGRES_USER=postgres
+      - PGPORT=5432
+
+
+  # Comment Postgre service above and uncomment below to use MySQL
+  # nb: You'll need to do the same for the WAIT_HOSTS env variable below
+
+  # db:
+  #   image: mysql:5.6.26
+  #   ports:
+  #     - 3306:3306
+  #   environment:
+  #     - MYSQL_ROOT_PASSWORD=db_password
+
+  spec:
+    build: .
+    volumes:
+      - './spec:/shipup_test/spec'
+      - './.rspec:/shipup_test/.rspec'
+      - './glexport_development.psql.dump:/shipup_test/glexport_development.psql.dump'
+      - './glexport_development.mysql.dump:/shipup_test/glexport_development.mysql.dump'
+    links:
+      - db
+    environment:
+      - PGHOST=db
+      - PGPORT=5432
+      - PGUSER=postgres
+      - PGDATABASE=shipup_test
+      - WAIT_HOSTS=db:5432
+      # - MYSQL_HOST=db
+      # - MYSQL_PWD=db_password
+      # - WAIT_HOSTS=db:3306
+
