@@ -1,6 +1,9 @@
 module Api
   module V1
-    Class ShipmentsController < ApplicationController
+    class ShipmentsController < ApplicationController
+
+      def index ; end
+      
     end
   end
 end

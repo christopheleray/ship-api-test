@@ -8,7 +8,7 @@ HTTP_UNPROCESSABLE = 422
 # BASE_URL = 'http://localhost:3000'
 BASE_URL = 'http://host.docker.internal:3000'
 
-RESET_DB_COMMAND = 'pg_restore --clean -d shipup_test glexport_development.psql.dump'
+RESET_DB_COMMAND = 'pg_restore --clean -d shipup_test_development glexport_development.psql.dump'
 # RESET_DB_COMMAND = 'mysql -u root < glexport_development.mysql.dump'
 
 YALMART_ID = 2
